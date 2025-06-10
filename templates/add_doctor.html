@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}添加医生{% endblock %}
+{% block content %}
+<h2>添加医生</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="name">医生姓名</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="department_id">科室</label>
+        <select name="department_id" id="department_id" class="form-select">
+            {% for dept in departments %}
+            <option value="{{ dept['科室ID'] }}">{{ dept['科室名称'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="gender">性别</label>
+        <select id="gender" name="gender" class="form-select" >
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="title">职称</label>
+        <input type="text" id="title" name="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="phone">联系电话</label>
+        <input type="number" id="phone" name="phone" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="hire_date">入职日期</label>
+        <input type="date" id="hire_date" name="hire_date" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+{% endblock %}
+

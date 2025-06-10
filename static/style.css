@@ -1,0 +1,87 @@
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    margin: 40px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #aaa;
+    padding: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+
+.error-message {
+    color: red;
+    font-weight: bold;
+}
+
+/** {*/
+/*  box-sizing: border-box;*/
+/*}*/
+/*body {*/
+/*  margin: 0;*/
+/*}*/
+/**{*/
+/*  box-sizing:border-box;*/
+/*}*/
+/*body{*/
+/*  margin-top:0px;*/
+/*  margin-right:0px;*/
+/*  margin-bottom:0px;*/
+/*  margin-left:0px;*/
+/*  font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Roboto, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", "Microsoft Jhenghei", sans-serif;*/
+/*}*/
+/*.logo path{*/
+/*  pointer-events:none;*/
+/*  fill:none;*/
+/*  stroke-linecap:round;*/
+/*  stroke-width:7;*/
+/*  stroke:rgb(255, 255, 255);*/
+/*}*/
+/*.wechat-group img{*/
+/*  max-width:220px;*/
+/*  height:auto;*/
+/*  border-top-left-radius:8px;*/
+/*  border-top-right-radius:8px;*/
+/*  border-bottom-right-radius:8px;*/
+/*  border-bottom-left-radius:8px;*/
+/*  margin-top:0px;*/
+/*  margin-right:auto;*/
+/*  margin-bottom:0px;*/
+/*  margin-left:auto;*/
+/*  width:100%;*/
+/*}*/
+/*.welcome-img img{*/
+/*  width:100%;*/
+/*}*/
+/*.c3108{*/
+/*  display:none;*/
+/*}*/
+/*.c3124{*/
+/*  height:100vh;*/
+/*  padding-top:60px;*/
+/*}*/
+/*.c3099{*/
+/*  background:url('https://coscdn.htmlpage.cn/html-template/assets/img/bg/4.jpg') no-repeat right center;*/
+/*}*/
+

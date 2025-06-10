@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}医生管理{% endblock %}
+{% block content %}
+<h2>医生列表</h2>
+<a href="/doctors/add" class="btn btn-primary mb-3">添加医生</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>所属科室</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctors %}
+        <tr>
+            <td>{{ doctor['医生ID'] }}</td>
+            <td>{{ doctor['姓名'] }}</td>
+            <td>{{ doctor['科室名称'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

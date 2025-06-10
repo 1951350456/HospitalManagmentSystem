@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}药品信息{% endblock %}
+{% block content %}
+<h2>药品信息</h2>
+
+<a href="/medicines/add" class="btn btn-primary mb-3">添加新药品</a>
+<br>
+<a href="/stock_in" class="btn btn-primary mb-3">入库记录</a>
+<br>
+<a href="/stock_out" class="btn btn-primary mb-3">出库记录</a>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>类型</th>
+            <th>生产厂家</th>
+            <th>单价</th>
+            <th>库存</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for med in medicines %}
+        <tr>
+            <td>{{ med['药品ID'] }}</td>
+            <td>{{ med['药品名称'] }}</td>
+            <td>{{ med['类型名称'] }}</td>
+            <td>{{ med['生产厂家'] }}</td>
+            <td>{{ med['价格'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>药品库存</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>药品名称</th>
+            <th>类型</th>
+            <th>规格</th>
+            <th>单位</th>
+            <th>库存量</th>
+            <th>单价</th>
+            <th>库存状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in total_stocks %}
+        <tr>
+            <td>{{ stock['药品ID'] }}</td>
+            <td>{{ stock['药品名称'] }}</td>
+            <td>{{ stock['类型名称'] }}</td>
+            <td>{{ stock['规格'] }}</td>
+            <td>{{ stock['单位'] }}</td>
+            <td>{{ stock['库存量'] }}</td>
+            <td>{{ stock['价格'] }}</td>
+            <td>{{ stock['库存状态'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

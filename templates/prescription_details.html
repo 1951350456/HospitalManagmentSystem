@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}处方详情{% endblock %}
+{% block content %}
+<h2>处方详情</h2>
+<p><strong>病人：</strong> {{ prescription['病人'] }}</p>
+<p><strong>医生：</strong> {{ prescription['医生'] }}</p>
+<p><strong>时间：</strong> {{ prescription['开具时间'] }}</p>
+<p><strong>诊断结果：</strong> {{ prescription['诊断结果'] }}</p>
+<h2>开药</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="medicine_id">药品名称</label>
+        <select name="medicine_id" id="medicine_id" class="form-select" required>
+            {% for med in medicines %}
+            <option value="{{ med['药品ID'] }}">{{ med['药品名称'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="quantity">数量</label>
+        <input type="number" id="quantity" class="form-control" name="quantity" inputmode="numeric" required>
+    </div>
+    <div class="mb-3">
+        <label for="usage">用法用量</label>
+        <input type="text" id="usage" class="form-control" name="usage" required>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+<h2>药品列表：</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>明细ID</th>
+            <th>药品名称</th>
+            <th>数量</th>
+            <th>用法用量</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for detail in details %}
+        <tr>
+            <td>{{ detail['明细ID'] }}</td>
+            <td>{{ detail['药品名称'] }}</td>
+            <td>{{ detail['数量'] }}</td>
+            <td>{{ detail['用法用量'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

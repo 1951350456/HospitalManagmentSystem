@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}添加科室{% endblock %}
+{% block content %}
+<h2>添加新科室</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="name">科室名称</label>
+        <input id="name" type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="leader">负责人</label>
+        <input id="leader" type="text" name="leader" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="description">描述</label>
+        <input id="description" type="text" name="description" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+{% endblock %}

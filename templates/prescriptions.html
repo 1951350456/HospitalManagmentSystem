@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}处方列表{% endblock %}
+{% block content %}
+<h2>添加新处方</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="patient_id">病人</label>
+        <select name="patient_id" id="patient_id" class="form-select" required>
+            {% for patient in patients %}
+            <option value="{{ patient['病人ID'] }}">{{ patient['病人ID'], patient['姓名']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="doctor_id">医生</label>
+        <select name="doctor_id" id="doctor_id" class="form-select" required>
+            {% for doctor in doctors %}
+            <option value="{{ doctor['医生ID'] }}">{{ doctor['科室名称'], doctor['姓名']}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="diagnosis">诊断结果</label>
+        <input id="diagnosis" type="text" name="diagnosis" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+<h2>处方列表</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>病人</th>
+            <th>医生</th>
+            <th>时间</th>
+            <th>诊断结果</th>
+            <th>详情</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pres in prescriptions %}
+        <tr>
+            <td>{{ pres['处方ID'] }}</td>
+            <td>{{ pres['病人姓名'] }}</td>
+            <td>{{ pres['医生姓名'] }}</td>
+            <td>{{ pres['开具时间'] }}</td>
+            <td>{{ pres['诊断结果'] }}</td>
+            <td><a href="/prescription/{{ pres['处方ID'] }}/details" class="btn btn-info btn-sm">查看</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

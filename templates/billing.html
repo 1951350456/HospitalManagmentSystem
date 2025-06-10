@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}账单管理{% endblock %}
+{% block content %}
+<h2>缴费</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="prescription_id">处方ID号</label>
+        <select name="prescription_id" id="prescription_id" class="form-select" required>
+            {% for pres in unpaid_pres %}
+            <option value="{{ pres['处方ID'] }}">{{ pres['处方ID'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="datetime">收费时间</label>
+        <input id="datetime" type="datetime-local" name="datetime" class="form-control" required>
+    </div>
+        <div class="mb-3">
+        <label for="payment_method">支付方式</label>
+        <select name="payment_method" id="payment_method" class="form-select">
+            <option value="现金">现金</option>
+            <option value="银行卡">银行卡</option>
+            <option value="信用卡">信用卡</option>
+            <option value="支付宝">支付宝</option>
+            <option value="微信">微信</option>
+            <option value="医保卡">医保卡</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+<h2>账单</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>账单ID</th>
+            <th>处方ID</th>
+            <th>病人</th>
+            <th>总金额</th>
+            <th>支付方式</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bill in bills %}
+        <tr>
+            <td>{{ bill['收费ID'] }}</td>
+            <td>{{ bill['处方ID'] }}</td>
+            <td>{{ bill['病人姓名'] }}</td>
+            <td>{{ bill['收费金额'] }}</td>
+            <td>{{ bill['支付方式'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h2>待缴费处方</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>处方ID</th>
+            <th>病人姓名</th>
+            <th>医生姓名</th>
+            <th>开具时间</th>
+            <th>诊断结果</th>
+            <th>待缴费金额</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for un_pre in unpaid_pres %}
+        <tr>
+            <td>{{ un_pre['处方ID'] }}</td>
+            <td>{{ un_pre['病人姓名'] }}</td>
+            <td>{{ un_pre['医生姓名'] }}</td>
+            <td>{{ un_pre['开具时间'] }}</td>
+            <td>{{ un_pre['诊断结果'] }}</td>
+            <td>{{ un_pre['待缴费金额'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

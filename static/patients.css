@@ -1,0 +1,163 @@
+/* 病人管理页面样式 */
+.patients-container {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    margin: 20px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.page-title {
+    color: #2c3e50;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.search-box {
+    position: relative;
+    margin: 1rem 0;
+}
+
+.search-input {
+    width: 300px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74,144,226,0.2);
+}
+
+.btn-add-patient {
+    background-color: #4a90e2;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add-patient:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
+
+.patients-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.patients-table th {
+    background-color: #4a90e2;
+    color: white;
+    font-weight: 500;
+    padding: 1rem;
+    text-align: left;
+}
+
+.patients-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.patients-table tr:last-child td {
+    border-bottom: none;
+}
+
+.patients-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.patients-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.patient-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-edit, .btn-delete {
+    padding: 0.25rem 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .patients-container {
+        padding: 1rem;
+        margin: 10px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .patients-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* 添加动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.patients-container {
+    animation: fadeIn 0.5s ease-out;
+} 

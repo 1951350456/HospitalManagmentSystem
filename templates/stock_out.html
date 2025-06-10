@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}药品出库{% endblock %}
+{% block content %}
+<h2>添加出库记录</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="medicine_id">药品</label>
+        <select id="medicine_id" name="medicine_id" class="form-select">
+            {% for med in medicines %}
+            <option value="{{ med['药品ID'] }}">{{ med['药品名称'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="quantity">出库数量</label>
+        <input type="number" id="quantity" class="form-control" name="quantity" inputmode="numeric" required>
+    </div>
+    <div class="mb-3">
+        <label for="datetime">出库时间</label>
+        <input type="datetime-local" id="datetime" class="form-control" name="datetime" required>
+    </div>
+    <div class="mb-3">
+        <label for="departments">领用科室</label>
+        <select id="departments" name="departments" class="form-select">
+            {% for dep in departments %}
+            <option value="{{ dep['科室ID'] }}">{{ dep['科室名称'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">出库</button>
+</form>
+<h2>出库记录</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>出库ID</th>
+            <th>药品名称</th>
+            <th>数量</th>
+            <th>入库时间</th>
+            <th>操作员</th>
+            <th>领用科室</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in stock_outs %}
+        <tr>
+            <td>{{ record['出库ID'] }}</td>
+            <td>{{ record['药品名称'] }}</td>
+            <td>{{ record['数量'] }}</td>
+            <td>{{ record['入库时间'] }}</td>
+            <td>{{ record['操作员'] }}</td>
+            <td>{{ record['领用科室'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

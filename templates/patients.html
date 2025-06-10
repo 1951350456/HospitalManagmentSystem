@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}病人管理{% endblock %}
+{% block content %}
+<h2>病人列表</h2>
+<a href="/patients/add" class="btn btn-primary mb-3">添加病人</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>出生日期</th>
+            <th>性别</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for patient in patients %}
+        <tr>
+            <td>{{ patient['病人ID'] }}</td>
+            <td>{{ patient['姓名'] }}</td>
+            <td>{{ patient['出生日期'] }}</td>
+            <td>{{ patient['性别'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

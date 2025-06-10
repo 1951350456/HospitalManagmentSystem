@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}添加药品{% endblock %}
+{% block content %}
+<h2>添加药品</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="name">药品名称</label>
+        <input type="text" id="name" class="form-control" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="type_id">药品类型</label>
+        <select name="type_id" id="type_id" class="form-select" required>
+            {% for type in types %}
+            <option value="{{ type['类型ID'] }}">{{ type['类型名称'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="spec">规格</label>
+        <input type="text" id="spec" class="form-control" name="spec" required>
+    </div>
+    <div class="mb-3">
+        <label for="unit">单位</label>
+        <input type="text" id="unit" class="form-control" name="unit" required>
+    </div>
+    <div class="mb-3">
+        <label for="manufacturer">生产厂家</label>
+        <input type="text" id="manufacturer" class="form-control" name="manufacturer" required>
+    </div>
+    <div class="mb-3">
+        <label for="price">价格</label>
+        <input type="number" id="price" class="form-control" name="price" required step="0.01" min="0" max="99999999.99">
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+{% endblock %}

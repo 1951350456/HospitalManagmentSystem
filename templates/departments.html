@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}科室管理{% endblock %}
+{% block content %}
+<h2>科室列表</h2>
+<a href="/departments/add" class="btn btn-primary mb-3">添加新科室</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>科室名称</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for dept in departments %}
+        <tr>
+            <td>{{ dept['科室ID'] }}</td>
+            <td>{{ dept['科室名称'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

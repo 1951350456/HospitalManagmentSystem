@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}添加病人{% endblock %}
+{% block content %}
+<h2>添加病人</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="name">姓名</label>
+        <input type="text" id="name" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="birth_date">出生日期</label>
+        <input type="date" id="birth_date" name="birth_date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="gender">性别</label>
+        <select name="gender" id="gender" class="form-select">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="phone">联系电话</label>
+        <input type="number" id="phone" name="phone" class="form-control" inputmode="numeric" required>
+    </div>
+    <div class="mb-3">
+        <label for="address">住址</label>
+        <input type="text" id="address" name="address" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="card_number">医保卡号</label>
+        <input type="card_number" id="card_number" name="card_number" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+{% endblock %}
+

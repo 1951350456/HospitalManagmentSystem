@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}药品类型{% endblock %}
+{% block content %}
+<h2>药品类型</h2>
+<a href="/medicine_types/add" class="btn btn-primary mb-3">添加新类型</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>描述</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for type in types %}
+        <tr>
+            <td>{{ type['类型ID'] }}</td>
+            <td>{{ type['类型名称'] }}</td>
+            <td>{{ type['描述'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

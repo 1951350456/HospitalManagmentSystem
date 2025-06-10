@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}添加药品类型{% endblock %}
+{% block content %}
+<h2>添加药品类型</h2>
+<form method="post">
+    <div class="mb-3">
+        <label for="name">类型名称</label>
+        <input type="text" id="name" class="form-control" name="name" required>
+      <label for="description">描述</label>
+        <input type="text" id="description" class="form-control" name="description" required>
+    </div>
+    <button type="submit" class="btn btn-success">添加</button>
+</form>
+{% endblock %}
