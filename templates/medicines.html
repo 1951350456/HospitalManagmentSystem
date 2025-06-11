@@ -1,40 +1,169 @@
 {% extends 'base.html' %}
 {% block title %}药品信息{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+.medicines-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0;
+    padding: 30px;
+}
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.page-title {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+.btn-add-medicine {
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.btn-add-medicine:hover {
+    background-color: #218838;
+    color: white;
+    text-decoration: none;
+}
+.btn-link {
+    margin-right: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #4a90e2;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.btn-link:hover {
+    background-color: #357abd;
+    color: white;
+    text-decoration: none;
+}
+.search-box {
+    margin-bottom: 20px;
+}
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.search-input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+}
+.medicines-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.medicines-table th,
+.medicines-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+.medicines-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+.medicines-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+
+.medicines-table1 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.medicines-table1 th,
+.medicines-table1 td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+.medicines-table1 th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+.medicines-table1 tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+
+</style>
+{% endblock %}
+
 {% block content %}
-<h2>药品信息</h2>
+<div class="medicines-container">
+    <div class="page-header">
+        <h2 class="page-title">药品信息</h2>
+        <div>
+            <a href="{{ url_for('add_medicine') }}" class="btn-add-medicine">
+                <i class="fas fa-plus"></i> 添加新药品
+            </a>
+        </div>
+    </div>
+    <div class="search-box">
+        <input type="text" class="search-input" id="medicineSearch" placeholder="搜索药品名称..." onkeyup="searchMedicines('medicineSearch')">
+    </div>
+    <table class="medicines-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>名称</th>
+                <th>类型</th>
+                <th>生产厂家</th>
+                <th>单价</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for med in medicines %}
+            <tr>
+                <td>{{ med['药品ID'] }}</td>
+                <td>{{ med['药品名称'] }}</td>
+                <td>{{ med['类型名称'] }}</td>
+                <td>{{ med['生产厂家'] }}</td>
+                <td>{{ med['价格'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-<a href="/medicines/add" class="btn btn-primary mb-3">添加新药品</a>
-<br>
-<a href="/stock_in" class="btn btn-primary mb-3">入库记录</a>
-<br>
-<a href="/stock_out" class="btn btn-primary mb-3">出库记录</a>
-<br>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>名称</th>
-            <th>类型</th>
-            <th>生产厂家</th>
-            <th>单价</th>
-            <th>库存</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for med in medicines %}
-        <tr>
-            <td>{{ med['药品ID'] }}</td>
-            <td>{{ med['药品名称'] }}</td>
-            <td>{{ med['类型名称'] }}</td>
-            <td>{{ med['生产厂家'] }}</td>
-            <td>{{ med['价格'] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
 
-<h2>药品库存</h2>
-<table class="table table-bordered">
+<div class="medicines-container">
+    <div class="page-header">
+        <h2 class="page-title">药品库存</h2>
+        <div>
+            <a href="{{ url_for('stock_in') }}" class="btn-link">入库记录</a>
+            <a href="{{ url_for('stock_out') }}" class="btn-link">出库记录</a>
+        </div>
+    </div>
+    <div class="search-box">
+        <input type="text" class="search-input" id="medicineSearch1" placeholder="搜索药品名称..." onkeyup="searchMedicines1('medicineSearch1')">
+    </div>
+    <table class="medicines-table1">
     <thead>
         <tr>
             <th>ID</th>
@@ -62,4 +191,117 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
+
+
+<div class="medicines-container">
+    <div class="page-header">
+        <h2 class="page-title">库存预警</h2>
+    </div>
+    <table class="medicines-table1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>预警信息</th>
+            <th>预警时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for warning in warnings %}
+        <tr>
+            <td>{{ warning['预警ID'] }}</td>
+            <td>{{ warning['预警信息'] }}</td>
+            <td>{{ warning['预警时间'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<div class="medicines-container">
+    <div class="page-header">
+        <h2 class="page-title">药品销售统计</h2>
+    </div>
+
+        <form method="POST" action="{{ url_for('medicines') }}" class="mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="start_date" class="form-label">开始日期</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date if start_date else '' }}" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="end_date" class="form-label">结束日期</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date if end_date else '' }}" required>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">查询</button>
+                </div>
+            </div>
+    </form>
+</div>
+{% if drug_stats %}
+<div class="medicines-container">
+    <table class="medicines-table1">
+            <thead>
+                        <tr>
+                            <th>药品ID</th>
+                            <th>药品名称</th>
+                            <th>销售总量</th>
+                            <th>销售总额</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in drug_stats %}
+                            <tr>
+                                <td>{{ row['药品ID'] }}</td>
+                                <td>{{ row['药品名称'] }}</td>
+                                <td>{{ row['销售总量'] }}</td>
+                                <td>{{ row['销售总额'] if row['销售总额'] else 0 }}</td>
+                            </tr>
+                        {% endfor %}
+            </tbody>
+</table>
+</div>
+{% endif %}
+
+<script>
+function searchMedicines(medicinName) {
+    const input = document.getElementById(medicinName);
+    const filter = input.value.toLowerCase();
+    const tbody = document.querySelector('.medicines-table tbody');
+    const rows = tbody.getElementsByTagName('tr');
+    for (let row of rows) {
+        const nameCell = row.getElementsByTagName('td')[1];
+        if (nameCell) {
+            const name = nameCell.textContent || nameCell.innerText;
+            if (name.toLowerCase().indexOf(filter) > -1) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+}
+</script>
+
+<script>
+function searchMedicines1(medicinName) {
+    const input = document.getElementById(medicinName);
+    const filter = input.value.toLowerCase();
+    const tbody = document.querySelector('.medicines-table1 tbody');
+    const rows = tbody.getElementsByTagName('tr');
+    for (let row of rows) {
+        const nameCell = row.getElementsByTagName('td')[1];
+        if (nameCell) {
+            const name = nameCell.textContent || nameCell.innerText;
+            if (name.toLowerCase().indexOf(filter) > -1) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+}
+</script>
+
 {% endblock %}

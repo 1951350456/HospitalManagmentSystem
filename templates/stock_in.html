@@ -1,53 +1,148 @@
 {% extends 'base.html' %}
 {% block title %}药品入库{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+.stockin-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0;
+    padding: 30px;
+}
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.page-title {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+.form-container {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+.form-title {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+}
+.btn-submit {
+    padding: 0.5rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #218838;
+}
+.stockin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.stockin-table th,
+.stockin-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+.stockin-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+.stockin-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<h2>添加入库记录</h2>
-<form method="post">
-    <div class="mb-3">
-        <label for="medicine_id">药品</label>
-        <select id="medicine_id" name="medicine_id" class="form-select">
-            {% for med in medicines %}
-            <option value="{{ med['药品ID'] }}">{{ med['药品名称'] }}</option>
+<div class="stockin-container">
+    <div class="page-header">
+        <h2 class="page-title">药品入库管理</h2>
+    </div>
+    <div class="form-container">
+        <h3 class="form-title"><i class="fas fa-arrow-down"></i> 添加入库记录</h3>
+        <form method="post">
+            <div class="form-group">
+                <label for="medicine_id" class="required-field">药品</label>
+                <select id="medicine_id" name="medicine_id" class="form-select" required>
+                    <option value="">请选择药品</option>
+                    {% for med in medicines %}
+                    <option value="{{ med['药品ID'] }}">{{ med['药品名称'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity" class="required-field">入库数量</label>
+                <input type="number" id="quantity" class="form-control" name="quantity" inputmode="numeric" required>
+            </div>
+            <div class="form-group">
+                <label for="datetime" class="required-field">入库时间</label>
+                <input type="datetime-local" id="datetime" class="form-control" name="datetime" required>
+            </div>
+            <div class="form-group">
+                <label for="supplier" class="required-field">供应商</label>
+                <input type="text" id="supplier" class="form-control" name="supplier" required maxlength="100">
+            </div>
+            <button type="submit" class="btn-submit">入库</button>
+        </form>
+    </div>
+    <h3 class="form-title"><i class="fas fa-list"></i> 入库记录</h3>
+    <table class="stockin-table">
+        <thead>
+            <tr>
+                <th>入库ID</th>
+                <th>药品名称</th>
+                <th>数量</th>
+                <th>入库时间</th>
+                <th>操作员</th>
+                <th>供应商</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in stock_ins %}
+            <tr>
+                <td>{{ record['入库ID'] }}</td>
+                <td>{{ record['药品名称'] }}</td>
+                <td>{{ record['数量'] }}</td>
+                <td>{{ record['入库时间'] }}</td>
+                <td>{{ record['操作员'] }}</td>
+                <td>{{ record['供应商'] }}</td>
+            </tr>
             {% endfor %}
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="quantity">入库数量</label>
-        <input type="number" id="quantity" class="form-control" name="quantity" inputmode="numeric" required>
-    </div>
-    <div class="mb-3">
-        <label for="datetime">入库时间</label>
-        <input type="datetime-local" id="datetime" class="form-control" name="datetime" required>
-    </div>
-    <div class="mb-3">
-        <label for="supplier">供应商</label>
-        <input type="text" id="supplier" class="form-control" name="supplier" required maxlength="100">
-    </div>
-    <button type="submit" class="btn btn-success">入库</button>
-</form>
-<h2>入库记录</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>入库ID</th>
-            <th>药品名称</th>
-            <th>数量</th>
-            <th>出库时间</th>
-            <th>操作员</th>
-            <th>供应商</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for record in stock_ins %}
-        <tr>
-            <td>{{ record['入库ID'] }}</td>
-            <td>{{ record['药品名称'] }}</td>
-            <td>{{ record['数量'] }}</td>
-            <td>{{ record['入库时间'] }}</td>
-            <td>{{ record['操作员'] }}</td>
-            <td>{{ record['供应商'] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 {% endblock %}

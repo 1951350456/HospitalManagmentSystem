@@ -51,7 +51,7 @@
 {% block content %}
 <div class="form-container">
     <h2 class="form-title">
-        <i class="fas fa-user-md"></i> 添加新医生
+        <i class="fas fa-user-edit"></i> 编辑病人信息
     </h2>
 
     <form method="post">
@@ -59,16 +59,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name" class="required-field">姓名</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name" 
+                           value="{{ patient['姓名'] }}" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="gender" class="required-field">性别</label>
                     <select class="form-control" id="gender" name="gender" required>
-                        <option value="">请选择性别</option>
-                        <option value="男">男</option>
-                        <option value="女">女</option>
+                        <option value="男" {{ 'selected' if patient['性别'] == '男' }} >男</option>
+                        <option value="女" {{ 'selected' if patient['性别'] == '女' }} >女</option>
                     </select>
                 </div>
             </div>
@@ -77,50 +77,43 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="title" class="required-field">职称</label>
-                    <select class="form-control" id="title" name="title" required>
-                        <option value="">请选择职称</option>
-                        <option value="主任医师">主任医师</option>
-                        <option value="副主任医师">副主任医师</option>
-                        <option value="主治医师">主治医师</option>
-                        <option value="住院医师">住院医师</option>
-                    </select>
+                    <label for="birth_date" class="required-field">出生日期</label>
+                    <input type="date" class="form-control" id="birth_date" name="birth_date" 
+                           value="{{ patient['出生日期'] }}" required>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="department" class="required-field">所属科室</label>
-                    <select class="form-control" id="department" name="department_id" required>
-                        <option value="">请选择科室</option>
-                        {% for dept in departments %}
-                        <option value="{{ dept['科室ID'] }}">{{ dept['科室名称'] }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="phone" class="required-field">联系电话</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" required
+                    <input type="tel" class="form-control" id="phone" name="phone" 
+                           value="{{ patient['联系电话'] }}" required
                            pattern="[0-9]{11}" title="请输入11位手机号码">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="card_number">医保卡号</label>
+                    <input type="text" class="form-control" id="card_number" name="card_number" 
+                           value="{{ patient['医保卡号'] or '' }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="hire_date" class="required-field">入职日期</label>
-                    <input type="date" class="form-control" id="hire_date" name="hire_date" required>
+                    <label for="address" class="required-field">住址</label>
+                    <input type="text" class="form-control" id="address" name="address" 
+                           value="{{ patient['住址'] }}" required>
                 </div>
             </div>
         </div>
 
         <div class="btn-group">
             <button type="submit" class="btn btn-primary">
-                <i class="fas fa-save"></i> 添加医生
+                <i class="fas fa-save"></i> 保存修改
             </button>
-            <a href="{{ url_for('doctors') }}" class="btn btn-secondary">
+            <a href="{{ url_for('patients') }}" class="btn btn-secondary">
                 <i class="fas fa-times"></i> 取消
             </a>
         </div>
@@ -135,9 +128,5 @@ document.querySelector('form').addEventListener('submit', function(e) {
         alert('请输入正确的11位手机号码！');
     }
 });
-
-// 设置入职日期的默认值为今天
-document.getElementById('hire_date').valueAsDate = new Date();
 </script>
-{% endblock %}
-
+{% endblock %} 

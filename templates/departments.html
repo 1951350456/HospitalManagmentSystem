@@ -1,22 +1,171 @@
 {% extends 'base.html' %}
 {% block title %}科室管理{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+.departments-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0;
+    padding: 30px;
+}
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.page-title {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+.btn-add-department {
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.btn-add-department:hover {
+    background-color: #218838;
+    color: white;
+    text-decoration: none;
+}
+.search-box {
+    margin-bottom: 20px;
+}
+.search-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+.search-input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+}
+.departments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.departments-table th,
+.departments-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+.departments-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+.departments-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<h2>科室列表</h2>
-<a href="/departments/add" class="btn btn-primary mb-3">添加新科室</a>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>科室名称</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for dept in departments %}
-        <tr>
-            <td>{{ dept['科室ID'] }}</td>
-            <td>{{ dept['科室名称'] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="departments-container">
+    <div class="page-header">
+        <h2 class="page-title">科室管理系统</h2>
+        <a href="{{ url_for('add_department') }}" class="btn-add-department">
+            <i class="fas fa-plus"></i> 添加科室
+        </a>
+    </div>
+    <div class="search-box">
+        <input type="text" class="search-input" id="departmentSearch" placeholder="搜索科室名称..." onkeyup="searchDepartments()">
+    </div>
+    <table class="departments-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>科室名称</th>
+                <th>负责人</th>
+                <th>描述</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dept in departments %}
+            <tr>
+                <td>{{ dept['科室ID'] }}</td>
+                <td>{{ dept['科室名称'] }}</td>
+                <td>{{ dept['负责人'] }}</td>
+                <td>{{ dept['描述'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <h2 class="page-title">科室就诊统计</h2>
+    <form method="POST" action="{{ url_for('departments') }}" class="mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="start_date" class="form-label">开始日期</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date if start_date else '' }}" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="end_date" class="form-label">结束日期</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date if end_date else '' }}" required>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">查询</button>
+                </div>
+            </div>
+    </form>
+    </div>
+    <div class="departments-container">
+    <!-- 科室就诊统计表格 -->
+        {% if dept_stats %}
+                <table class="departments-table">
+                    <thead>
+                        <tr>
+                            <th>科室ID</th>
+                            <th>科室名称</th>
+                            <th>就诊人数</th>
+                            <th>总收入</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in dept_stats %}
+                            <tr>
+                                <td>{{ row['科室ID'] }}</td>
+                                <td>{{ row['科室名称'] }}</td>
+                                <td>{{ row['就诊人数'] }}</td>
+                                <td>{{ row['总收入'] if row['总收入'] else 0 }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        {% endif %}
+</div>
+<script>
+function searchDepartments() {
+    const input = document.getElementById('departmentSearch');
+    const filter = input.value.toLowerCase();
+    const tbody = document.querySelector('.departments-table tbody');
+    const rows = tbody.getElementsByTagName('tr');
+    for (let row of rows) {
+        const nameCell = row.getElementsByTagName('td')[1];
+        if (nameCell) {
+            const name = nameCell.textContent || nameCell.innerText;
+            if (name.toLowerCase().indexOf(filter) > -1) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    }
+}
+</script>
 {% endblock %}

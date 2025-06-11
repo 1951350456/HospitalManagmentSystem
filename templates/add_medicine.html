@@ -1,36 +1,93 @@
 {% extends 'base.html' %}
 {% block title %}添加药品{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+.form-title {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+.form-control:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+}
+.btn-submit {
+    padding: 0.5rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #218838;
+}
+.required-field::after {
+    content: "*";
+    color: red;
+    margin-left: 4px;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<h2>添加药品</h2>
-<form method="post">
-    <div class="mb-3">
-        <label for="name">药品名称</label>
-        <input type="text" id="name" class="form-control" name="name" required>
-    </div>
-    <div class="mb-3">
-        <label for="type_id">药品类型</label>
-        <select name="type_id" id="type_id" class="form-select" required>
-            {% for type in types %}
-            <option value="{{ type['类型ID'] }}">{{ type['类型名称'] }}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="spec">规格</label>
-        <input type="text" id="spec" class="form-control" name="spec" required>
-    </div>
-    <div class="mb-3">
-        <label for="unit">单位</label>
-        <input type="text" id="unit" class="form-control" name="unit" required>
-    </div>
-    <div class="mb-3">
-        <label for="manufacturer">生产厂家</label>
-        <input type="text" id="manufacturer" class="form-control" name="manufacturer" required>
-    </div>
-    <div class="mb-3">
-        <label for="price">价格</label>
-        <input type="number" id="price" class="form-control" name="price" required step="0.01" min="0" max="99999999.99">
-    </div>
-    <button type="submit" class="btn btn-success">添加</button>
-</form>
+<div class="form-container">
+    <h2 class="form-title">
+        <i class="fas fa-capsules"></i> 添加新药品
+    </h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="name" class="required-field">药品名称</label>
+            <input type="text" id="name" class="form-control" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="type_id" class="required-field">药品类型</label>
+            <select name="type_id" id="type_id" class="form-control" required>
+                <option value="">请选择类型</option>
+                {% for type in types %}
+                <option value="{{ type['类型ID'] }}">{{ type['类型名称'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="spec" class="required-field">规格</label>
+            <input type="text" id="spec" class="form-control" name="spec" required>
+        </div>
+        <div class="form-group">
+            <label for="unit" class="required-field">单位</label>
+            <input type="text" id="unit" class="form-control" name="unit" required>
+        </div>
+        <div class="form-group">
+            <label for="manufacturer" class="required-field">生产厂家</label>
+            <input type="text" id="manufacturer" class="form-control" name="manufacturer" required>
+        </div>
+        <div class="form-group">
+            <label for="price" class="required-field">价格</label>
+            <input type="number" id="price" class="form-control" name="price" required step="0.01" min="0" max="99999999.99">
+        </div>
+        <button type="submit" class="btn-submit">添加</button>
+    </form>
+</div>
 {% endblock %}

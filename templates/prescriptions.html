@@ -1,53 +1,163 @@
 {% extends 'base.html' %}
 {% block title %}处方列表{% endblock %}
+
+{% block head %}
+{{ super() }}
+<style>
+.prescriptions-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 0;
+    padding: 30px;
+}
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.page-title {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #333;
+    margin: 0;
+}
+.form-container {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+.form-title {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 0.2rem rgba(74,144,226,0.25);
+}
+.btn-submit {
+    padding: 0.5rem 1.5rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #218838;
+}
+.prescriptions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.prescriptions-table th,
+.prescriptions-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+}
+.prescriptions-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+.prescriptions-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+.btn-details {
+    padding: 0.25rem 0.75rem;
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+.btn-details:hover {
+    background-color: #357abd;
+    color: white;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-<h2>添加新处方</h2>
-<form method="post">
-    <div class="mb-3">
-        <label for="patient_id">病人</label>
-        <select name="patient_id" id="patient_id" class="form-select" required>
-            {% for patient in patients %}
-            <option value="{{ patient['病人ID'] }}">{{ patient['病人ID'], patient['姓名']}}</option>
+<div class="prescriptions-container">
+    <div class="page-header">
+        <h2 class="page-title">处方管理</h2>
+    </div>
+    <div class="form-container">
+        <h3 class="form-title"><i class="fas fa-file-medical"></i> 添加新处方</h3>
+        <form method="post">
+            <div class="form-group">
+                <label for="patient_id" class="required-field">病人</label>
+                <select name="patient_id" id="patient_id" class="form-select" required>
+                    <option value="">请选择病人</option>
+                    {% for patient in patients %}
+                    <option value="{{ patient['病人ID'] }}">{{ patient['病人ID'] }} - {{ patient['姓名'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="doctor_id" class="required-field">医生</label>
+                <select name="doctor_id" id="doctor_id" class="form-select" required>
+                    <option value="">请选择医生</option>
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor['医生ID'] }}">{{ doctor['科室名称'] }} - {{ doctor['姓名'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="diagnosis" class="required-field">诊断结果</label>
+                <input id="diagnosis" type="text" name="diagnosis" class="form-control" required>
+            </div>
+            <button type="submit" class="btn-submit">添加</button>
+        </form>
+    </div>
+    <h3 class="form-title"><i class="fas fa-list"></i> 处方列表</h3>
+    <table class="prescriptions-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>病人</th>
+                <th>医生</th>
+                <th>时间</th>
+                <th>诊断结果</th>
+                <th>详情</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pres in prescriptions %}
+            <tr>
+                <td>{{ pres['处方ID'] }}</td>
+                <td>{{ pres['病人姓名'] }}</td>
+                <td>{{ pres['医生姓名'] }}</td>
+                <td>{{ pres['开具时间'] }}</td>
+                <td>{{ pres['诊断结果'] }}</td>
+                <td><a href="/prescription/{{ pres['处方ID'] }}/details" class="btn-details">查看</a></td>
+            </tr>
             {% endfor %}
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="doctor_id">医生</label>
-        <select name="doctor_id" id="doctor_id" class="form-select" required>
-            {% for doctor in doctors %}
-            <option value="{{ doctor['医生ID'] }}">{{ doctor['科室名称'], doctor['姓名']}}</option>
-            {% endfor %}
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="diagnosis">诊断结果</label>
-        <input id="diagnosis" type="text" name="diagnosis" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-success">添加</button>
-</form>
-<h2>处方列表</h2>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>病人</th>
-            <th>医生</th>
-            <th>时间</th>
-            <th>诊断结果</th>
-            <th>详情</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for pres in prescriptions %}
-        <tr>
-            <td>{{ pres['处方ID'] }}</td>
-            <td>{{ pres['病人姓名'] }}</td>
-            <td>{{ pres['医生姓名'] }}</td>
-            <td>{{ pres['开具时间'] }}</td>
-            <td>{{ pres['诊断结果'] }}</td>
-            <td><a href="/prescription/{{ pres['处方ID'] }}/details" class="btn btn-info btn-sm">查看</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 {% endblock %}
