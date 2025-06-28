@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{ super() }}
+<style>
+.welcome-section {
+    text-align: center;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.welcome-title {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-subtitle {
+    color: #6c757d;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.feature-description {
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 添加点击反馈效果 */
+.feature-card:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-section">
+    <h1 class="welcome-title">
+        <i class="fas fa-hospital"></i> 欢迎来到医院信息管理系统
+    </h1>
+    <p class="welcome-subtitle">
+        您好，{{ session.get('username', '访客') }}！请选择以下功能进行操作
+    </p>
+</div>
+
+<div class="features-grid">
+    <!-- 药品管理卡片组 -->
+    <div style="display: contents;">
+        <a href="{{ url_for('medicine_types') }}" class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-pills"></i>
+            </div>
+            <h3 class="feature-title">药品类型</h3>
+            <p class="feature-description">
+                管理药品类型信息和分类
+            </p>
+        </a>
+
+        <a href="{{ url_for('medicines') }}" class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-capsules"></i>
+            </div>
+            <h3 class="feature-title">药品信息</h3>
+            <p class="feature-description">
+                管理药品详细信息，包括库存、价格等
+            </p>
+        </a>
+    </div>
+
+    <!-- 收费和库存卡片组 -->
+    <div style="display: contents;">
+
+
+        <a href="{{ url_for('stock_in') }}" class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-box"></i>
+            </div>
+            <h3 class="feature-title">入库管理</h3>
+            <p class="feature-description">
+                管理药品入库、库存补充等操作
+            </p>
+        </a>
+    </div>
+</div>
+
+</div>
+
+
+{% endblock %}

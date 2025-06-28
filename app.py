@@ -201,7 +201,17 @@ def origin():
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html')
+    userpwd = session.get('dbpwd')
+    if userpwd == '123456':
+        return render_template('index.html')
+    elif userpwd == 'PharmacyMgr123':
+        return render_template('index_pharm.html')
+    elif userpwd == 'DoctorPassword123':
+        return render_template('index_doctor.html')
+    elif userpwd == 'CashierPassword123':
+        return render_template('index_cashier.html')
+    else:
+        return render_template('index_depthead.html')
 
 # 错误网页
 # 这是关键部分：定义404错误处理器
@@ -720,7 +730,7 @@ def billing():
         bills = cursor.fetchall()
         cursor.execute("SELECT 处方ID, 病人姓名, 医生姓名, 开具时间, 诊断结果 FROM 收费记录_处方")
         prescriptions_list = cursor.fetchall()
-        cursor.execute("SELECT * FROM 未缴费处方")
+        cursor.execute("SELECT * FROM 未缴费处方视图")
         unpaid_pres = cursor.fetchall()
     except Exception as e:
         flash('没有权限！', 'danger')

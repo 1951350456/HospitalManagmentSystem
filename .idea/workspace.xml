@@ -5,32 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="144dde35-f9b6-43a1-9e1a-341505cce0a5" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/connection.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/edit_doctor.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/edit_patient.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/restore.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index_cashier.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index_depthead.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index_doctor.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index_pharm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sqlcon.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/add_department.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/add_doctor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_doctor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/add_medicine.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_medicine.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/add_medicine_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_medicine_type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/billing.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/billing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/departments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/departments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/doctors.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/doctors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicine_types.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicine_types.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/medicines.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/medicines.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/patients.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/patients.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/prescriptions.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/prescriptions.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/stock_in.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stock_in.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/stock_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stock_out.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/医院信息管理数据库.md" beforeDir="false" afterPath="$PROJECT_DIR$/医院信息管理数据库.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,31 +51,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript 调试.base.html.executor": "Run",
-    "JavaScript 调试.index.html.executor": "Run",
-    "JavaScript 调试.login.html.executor": "Run",
-    "JavaScript 调试.medicine_types.html.executor": "Run",
-    "JavaScript 调试.stock_in.html.executor": "Run",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "H:/PycharmProjects/flaskProject(1)",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "two.files.diff.last.used.file": "H:/PycharmProjects/flaskProject(1)/flaskProject(1)/app.py",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript 调试.base.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.medicine_types.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.stock_in.html.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/PycharmProjects/flaskProject(1)&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;two.files.diff.last.used.file&quot;: &quot;H:/PycharmProjects/flaskProject(1)/flaskProject(1)/app.py&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="H:\PycharmProjects\flaskProject\templates" />
@@ -102,6 +83,7 @@
       <recent name="H:\PycharmProjects\flaskProject\static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\PycharmProjects\flaskProject" />
       <recent name="H:\PycharmProjects\flaskProject\static" />
     </key>
   </component>
@@ -159,7 +141,14 @@
       <workItem from="1749460156437" duration="2301000" />
       <workItem from="1749530145423" duration="42000" />
       <workItem from="1749539014994" duration="19264000" />
-      <workItem from="1749623519609" duration="27511000" />
+      <workItem from="1749623519609" duration="29486000" />
+      <workItem from="1749723105743" duration="5000" />
+      <workItem from="1749733738480" duration="32000" />
+      <workItem from="1750147255556" duration="2160000" />
+      <workItem from="1750227175346" duration="2630000" />
+      <workItem from="1750318062469" duration="2000" />
+      <workItem from="1750927131204" duration="3000" />
+      <workItem from="1751103169129" duration="12960000" />
     </task>
     <servers />
   </component>
@@ -178,6 +167,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flaskProject$app.coverage" NAME="app 覆盖结果" MODIFIED="1749653992640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flaskProject$app.coverage" NAME="app 覆盖结果" MODIFIED="1751105328114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
